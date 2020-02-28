@@ -24,7 +24,7 @@ var rs =  fs.createReadStream("abc.txt");
 var counter = 0;
 rs.on("data",function(chunk){
 counter++;
-console.log("弟"+counter+"取数据",chunk);
+console.log("弟"+counter+"次取数据",chunk);
 })
 
 rs.on("end",function(){
@@ -36,6 +36,77 @@ rs.on("end",function(){
 
 **Events对象 直接使用**  
 
-**data事件回调函数里面显示每次取得数据**
+**data事件回调函数里面显示每次取得数据   每次最大读取64kb**
 
 **end事件显示读取完后运行的代码**
+
+**运行结果如下：**
+
+```
+弟13取数据 <Buffer 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 ... 65486 more bytes>
+弟14取数据 <Buffer 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 ... 65486 more bytes>
+弟15取数据 <Buffer 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 ... 65486 more bytes>
+弟16取数据 <Buffer 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 ... 65486 more bytes>
+done.....
+```
+
+**文件的可写流  单次最大写入16384字节   首先调用fs的可写流方法**
+
+```js
+var fs = require("fs");
+var ws = fs.createWriteStream("abc.txt");
+```
+
+**然后写入数据**
+
+```js
+ws.write("abc",function(err){
+if(err)console.log(err)
+else console.log("write");
+})
+console.log(ws.writableHighWaterMark);
+
+ws.end("写完了")
+ws.on("finish",function(){
+    console.log("done");
+})
+```
+
+**end事件代表写完的标志   如果没有这个标志那么文件会在写到16384字节 并且会在写的文件的最后加入“写完了”**
+
+**finish事件是在文件写完后运行的代码**
+
+**运行结果如下**
+
+```
+$ node 文件可写流.js
+16384
+write
+done
+```
+
+**文件内容**
+
+```
+abc写完了
+```
+
+**关于pipe（）    类似于一个管道 在数据特别大的时候会用得到**
+
+```js
+var fs = require("fs");
+var rs = fs.createReadStream("abc.txt");
+var ws = fs.createWriteStream("1M.txt");
+ws.on("pipe",function(src) {
+    console.log("有数据在流动");
+})
+rs.pipe(ws)
+```
+
+**运行效果如下**
+
+```
+$ node 管道.js
+有数据在流动
+```
+
