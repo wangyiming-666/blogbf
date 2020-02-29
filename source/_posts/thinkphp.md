@@ -8,7 +8,7 @@ categories: php
 在引入tinkphp5的时候推荐使用Composer安装   执行
 
 ```
-composer create-project topthink/think tp --prefer-dist
+composer create-project topthink/think tp 5.0.* --prefer-dist
 ```
 
 cd到tp5目录下  运行

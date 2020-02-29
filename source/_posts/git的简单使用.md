@@ -153,4 +153,3 @@ Date:   Thu Feb 27 21:10:34 2020 +0800
 git reset --hard 版本号   //就是上面的commit 输入前几个数字即可
 ```
 
-12
