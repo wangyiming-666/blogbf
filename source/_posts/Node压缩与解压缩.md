@@ -5,14 +5,14 @@ tags: 学习心得
 categories: Node.js
 ---
 
-引zlib模块  和fs模块
+**引zlib模块  和fs模块**
 
 ```js
 var fs = require("fs");
 var zlib = require("zlib");
 ```
 
-然后创建写入和写出的流
+**然后创建写入和写出的流**
 
 ```js
 var rs = fs.createReadStream("1M.txt");
@@ -21,9 +21,9 @@ var ws = fs.createWriteStream("1M.txt.gz");
 rs.pipe(z).pipe(ws);
 ```
 
-通过pipe（）创建流引入到压缩模块的压缩模式然后写入到压缩文件
+**通过pipe（）创建流引入到压缩模块的压缩模式然后写入到压缩文件**
 
-解压缩模式和上面类似
+**解压缩模式和上面类似**
 
 ```js
 var rs = fs.createReadStream("1M.txt.gz");
@@ -32,11 +32,11 @@ var ws = fs.createWriteStream("1M1.txt");
 rs.pipe(unz).pipe(ws);
 ```
 
-通过pipe（）创建流引入到压缩模块的解压缩模式写入到解压缩的文件
+**通过pipe（）创建流引入到压缩模块的解压缩模式写入到解压缩的文件**
 
-顺带一提node的os模块  可以查看系统信息以及内存
+**顺带一提node的os模块  可以查看系统信息以及内存**
 
-先引入os模块
+**先引入os模块**
 
 ```js
 var os = require("os"); //引入os模块

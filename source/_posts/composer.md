@@ -5,15 +5,15 @@ tags: 学习心得
 categories: php
 ---
 
-composer类似于nodejs的npm
+**composer类似于nodejs的npm**
 
-在安装php的包之前  还需要检索在packagist资源库中检索一下包的存在 运行
+**在安装php的包之前  还需要检索在packagist资源库中检索一下包的存在 运行**
 
 ```
 composer search phpmailer
 ```
 
-检索结果如下
+**检索结果如下**
 
 ```
 phpmailer/phpmailer PHPMailer is a full-featured email creation and transfer class for PHPswiftmailer/swiftmailer Swiftmailer, free feature-rich PHP mailer
@@ -31,15 +31,15 @@ byjg/mailwrapper A lightweight wrapper for send mail. The interface is tottaly d
 phpmailerflamin/phpmailer PHPMailer Editado para menos arquivos
 ```
 
-我们可以发现有很多phpmailer的提供商 
+**我们可以发现有很多phpmailer的提供商** 
 
-然后我们就可以执行安装啦 运行
+**然后我们就可以执行安装啦 运行**
 
 ```
 composer require phpmailer/phpmailer
 ```
 
-如果出现如下结果说明安装成功
+**如果出现如下结果说明安装成功**
 
 ```
 Using version ^6.1 for phpmailer/phpmailer
@@ -54,11 +54,11 @@ Writing lock file
 Generating autoload files
 ```
 
-这里我们可以看到根目录下生成了许多文件  我们可以大概了解一下
+**这里我们可以看到根目录下生成了许多文件  我们可以大概了解一下**
 
-![](./composer/Snipaste_2020-02-29_11-39-57.png)
+**![](./composer/Snipaste_2020-02-29_11-39-57.png)**
 
-通过自动加载文件我们就可以引入我们安装的包了 在根目录下新建一个index.php 我们可以在index文件引入一下   代码如下
+**通过自动加载文件我们就可以引入我们安装的包了 在根目录下新建一个index.php 我们可以在index文件引入一下   代码如下**
 
 ```php
 <?php
@@ -70,15 +70,15 @@ $mailer = new \PHPMailer\PHPMailer\PHPMailer();
 var_dump($mailer);
 ```
 
-部分输出如下
+**部分输出如下**
 
 ```
 object(PHPMailer\PHPMailer\PHPMailer)#3 (74) { ["Priority"]=> NULL ["CharSet"]=> string(10) "iso-8859-1" ["ContentType"]=> string(10) "text/plain" ["Encoding"]=> string(4) "8bit" ["ErrorInfo"]=> string(0) "" ["From"]=> string(14) "root@localhost" ["FromName"]=> string(9) "Root User" ["Sender"]=> string(0) "" ["Subject"]=> string(0) "" ["Body"]=> string(0) "" ["AltBody"]=> string(0) "" ["Ical"]=> string(0) "" ["MIMEBody":protected]=> string(0) ""
 ```
 
-composer.json 和 composer.lock 两个文件 
+**composer.json 和 composer.lock 两个文件** 
 
-composer.json的内容如下
+**composer.json的内容如下**
 
 ```php
 {
@@ -88,19 +88,19 @@ composer.json的内容如下
 }
 ```
 
-可以看到require定义了要引入的包名和版本号  其中包含了命名包的机制
+**可以看到require定义了要引入的包名和版本号  其中包含了命名包的机制**
 
-如果我们引入了phpmailer/phpmailer包  发现还要一个包   xxx/phpmailer中的一个功能 就可以在require里面填入啦
+**如果我们引入了phpmailer/phpmailer包  发现还要一个包   xxx/phpmailer中的一个功能 就可以在require里面填入啦**
 
-我们一般都需要安装的是稳定版 （stable） 开发版本为（dev）  
+**我们一般都需要安装的是稳定版 （stable） 开发版本为（dev）**  
 
-我们可以在composer.json中添加以下配置项
+**我们可以在composer.json中添加以下配置项**
 
 ```php
 "minimum-stability": "stable"
 ```
 
-接下来我们就手动安装一个包吧 手动更新composer.json
+**接下来我们就手动安装一个包吧 手动更新composer.json**
 
 ```php
 {
@@ -114,17 +114,17 @@ composer.json的内容如下
 composer install
 ```
 
-就可以看到安装的过程啦！
+**就可以看到安装的过程啦！**
 
-composer.lock  中说明的安装的具体的版本号  在提交项目的适合要把它和composer.json 一起提交上去哦！
+**composer.lock  中说明的安装的具体的版本号  在提交项目的适合要把它和composer.json 一起提交上去哦！**
 
-下面我们可以自己制作一个包  首先我们在github上面创建一个空仓库 命名为http   然后创建http文件夹   并下面初始化一个composer.json文件  运行
+**下面我们可以自己制作一个包  首先我们在github上面创建一个空仓库 命名为http   然后创建http文件夹   并下面初始化一个composer.json文件  运行**
 
 ```
 composer init
 ```
 
-如下
+**如下**
 
 ```
 
@@ -188,7 +188,7 @@ Writing lock file
 Generating autoload files
 ```
 
-然后为了方便自动加载文件  我们在composer.json内还应该配置映射类库的命名空间的实际目录
+**然后为了方便自动加载文件  我们在composer.json内还应该配置映射类库的命名空间的实际目录**
 
 ```php
    "autoload": {
@@ -198,7 +198,7 @@ Generating autoload files
     }
 ```
 
-然后我们在根目录下面创建路径为src/http/lib/Http.php的文件  代码如下
+**然后我们在根目录下面创建路径为src/http/lib/Http.php的文件  代码如下**
 
 ```php
 <?php
@@ -220,15 +220,15 @@ class Http{
 }
 ```
 
-然后我们要建立与composer的关系，加入到自动加载机制（aotuload）中去
+**然后我们要建立与composer的关系，加入到自动加载机制（aotuload）中去**
 
-运行
+**运行**
 
 ```
 composer install
 ```
 
-运行结果如下
+**运行结果如下**
 
 ```
 D:\phpStudy\WWW\http>composer install 
@@ -239,9 +239,9 @@ Writing lock file
 Generating autoload files
 ```
 
-然后我们就可以看到在verndor/composer/autoload_psr4. php 文件中记录了$vendorDir 和 $baseDir 的路径。使用 Composer 安装类库依赖时， Packagist 会自动将自定义的项目文件 放到 vendor 目录下。
+**然后我们就可以看到在verndor/composer/autoload_psr4. php 文件中记录了$vendorDir 和 $baseDir 的路径。使用 Composer 安装类库依赖时， Packagist 会自动将自定义的项目文件 放到 vendor 目录下。**
 
-可以看到文件内容如下了
+**可以看到文件内容如下了**
 
 ```php
 <?php
@@ -257,9 +257,9 @@ return array(
 
 ```
 
-我们可以在本地测试一下这个包
+**我们可以在本地测试一下这个包**
 
-在跟目录下创建index.php 代码如下
+**在跟目录下创建index.php 代码如下**
 
 ```php
 <?php
@@ -267,31 +267,31 @@ require __DIR__.'/vendor/autoload.php';
 var_dump(strlen(wangyiming\http\Http::requestByGet('http://baidu.com')));
 ```
 
-然后在浏览器运行 会得到如下结束  说明运行成功
+**然后在浏览器运行 会得到如下结束  说明运行成功**
 
 ```
 int(81)
 ```
 
-然后推送文章到github  这里不宅说明  可以看以前的文章  [git的简单使用](https://wangyiming-666.github.io/2020/02/27/git的简单使用/)
+**然后推送文章到github  这里不宅说明  可以看以前的文章  [git的简单使用](https://wangyiming-666.github.io/2020/02/27/git的简单使用/)**
 
-然后我们要拥有一个packagist账号并登录
+**然后我们要拥有一个packagist账号并登录**
 
-访问地址：[点这里](https://packagist.org/register) ， 实现注册和登录操作，不过也可以使用第三 方，如 GitHub 账号实现授权登录，简化注册流程。 
+**访问地址：[点这里](https://packagist.org/register) ， 实现注册和登录操作，不过也可以使用第三 方，如 GitHub 账号实现授权登录，简化注册流程。** 
 
-提交包的 GitHub 仓库地址 访问地址：[点这里](https://packagist.org/packages/submit)， 在 Repository URL (Git/Svn/Hg）下方 的输入框中，填写 Git 地址后单击 Check 按钮
+**提交包的 GitHub 仓库地址 访问地址：[点这里](https://packagist.org/packages/submit)， 在 Repository URL (Git/Svn/Hg）下方 的输入框中，填写 Git 地址后单击 Check 按钮**
 
-![](./composer/Snipaste_2020-02-29_16-09-12.png)
+**![](./composer/Snipaste_2020-02-29_16-09-12.png)**
 
-![](./composer/Snipaste_2020-02-29_16-10-21.png)
+**![](./composer/Snipaste_2020-02-29_16-10-21.png)**
 
-然后就点submit就可以提交啦！
+**然后就点submit就可以提交啦！**
 
-![](./composer/Snipaste_2020-02-29_16-13-01.png)
+**![](./composer/Snipaste_2020-02-29_16-13-01.png)**
 
-当 Composer 获取测试版本（dev）进行依赖包安装时， 会自动同步 GitHub 上最新的 代码，但稳定版（stable）的发布需要在 GitHub 上添加相应的标签（Tag）。下面简单讲 解操作步骤。 
+**当 Composer 获取测试版本（dev）进行依赖包安装时， 会自动同步 GitHub 上最新的 代码，但稳定版（stable）的发布需要在 GitHub 上添加相应的标签（Tag）。下面简单讲 解操作步骤。** 
 
-我们可以在本地创建一个tag 然后再推送上去  运行下面的命令创建tag
+**我们可以在本地创建一个tag 然后再推送上去  运行下面的命令创建tag**
 
 ```
 git tag -a v1.0.0 -m'v1.0.0'
@@ -301,7 +301,7 @@ git tag
 v1.0.0
 ```
 
-然后我们把tag推送 执行
+**然后我们把tag推送 执行**
 
 ```
 git push http --tags
@@ -314,13 +314,13 @@ To https://github.com/wangyiming-666/http.git
  * [new tag]         v1.0.0 -> v1.0.0
 ```
 
-然后点击update  会发现版本已经更新
+**然后点击update  会发现版本已经更新**
 
-![](./composer/Snipaste_2020-02-29_16-22-48.png)
+**![](./composer/Snipaste_2020-02-29_16-22-48.png)**
 
-![](./composer/Snipaste_2020-02-29_16-23-01.png)
+**![](./composer/Snipaste_2020-02-29_16-23-01.png)**
 
-现在我们测试一下自己的包 在一个新的文件夹下面运行
+**现在我们测试一下自己的包 在一个新的文件夹下面运行**
 
 ```
 composer composer require wangyiming-666/http
@@ -335,4 +335,4 @@ Package operations: 1 install, 0 updates, 0 removals
    Generat工ng autoload files 
 ```
 
-然后我们根据测试的时候一样  再测试一遍就可以啦！
+**然后我们根据测试的时候一样  再测试一遍就可以啦！**

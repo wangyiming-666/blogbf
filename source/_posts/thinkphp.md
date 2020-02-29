@@ -5,19 +5,19 @@ tags: 学习心得
 categories: php
 ---
 
-在引入tinkphp5的时候推荐使用Composer安装   执行
+**在引入tinkphp5的时候推荐使用Composer安装   执行**
 
 ```
 composer create-project topthink/think tp 5.0.* --prefer-dist
 ```
 
-cd到tp5目录下  运行
+**cd到tp5目录下  运行**
 
 ```
 php think
 ```
 
-执行结果如下
+**执行结果如下**
 
 ```
 Think Console version 0.1
@@ -50,11 +50,11 @@ Available commands:
   optimize:schema    Build database schema cache.
 ```
 
-可以看到框架提供了很多操作命令  最基本的生成模块命令
+**可以看到框架提供了很多操作命令  最基本的生成模块命令**
 
-先把根目录下的bulid.php打开  里面提供的生成模块的示例命令  
+**先把根目录下的bulid.php打开  里面提供的生成模块的示例命令**  
 
-我们在application目录下面也创建一个build.php，文件内容如下
+**我们在application目录下面也创建一个build.php，文件内容如下**
 
 ```php
 <?php
@@ -74,32 +74,32 @@ return [
 ];
 ```
 
-然后运行 
+**然后运行** 
 
 ```
 php think bulid
 ```
 
-可以看到在application目录下面demo模块已经自动完成
+**可以看到在application目录下面demo模块已经自动完成**
 
-下面是生成控制器和模型文件
+**下面是生成控制器和模型文件**
 
 ```
 php think make:controller demo/Order  //生成控制器
 php think make:model demo/Order  //生成模型
 ```
 
-生成控制器的时候  默认是资源控制器 自带初始化方法  这里我们也可以创建一个空的控制器 运行
+**生成控制器的时候  默认是资源控制器 自带初始化方法  这里我们也可以创建一个空的控制器 运行**
 
 ```
 php think make:controller demo/Order --plain
 ```
 
-下面讲一下如何扩展命令行的功能
+**下面讲一下如何扩展命令行的功能**
 
-在application下创建一个command目录  里面新增一个Session.php文件
+**在application下创建一个command目录  里面新增一个Session.php文件**
 
-然后里面的代码如下
+**然后里面的代码如下**
 
 ```php
 <?php
@@ -132,27 +132,27 @@ class Session extends Command
 }
 ```
 
-configure方法定义了命令的 名称，选项，功能描述
+**configure方法定义了命令的 名称，选项，功能描述**
 
-可以看出  这里的setName定义了这个指令的名字
+**可以看出  这里的setName定义了这个指令的名字**
 
-addOption定义了这个指令的其他选项   其中的：
+**addOption定义了这个指令的其他选项   其中的：**
 
-clear 是选项的名字 
+**clear 是选项的名字** 
 
-d 对应是别名
+**d 对应是别名**
 
-Option对应选项的类型
+**Option对应选项的类型**
 
- 值对应没有输入值 CVALUE_NONE） 、输入值必须 CVALUE _REQUIRED）、输入值可选（VALUE_OPTIONAL）和数组输入值（VALUE IS ARRAY) 4 种。 
+ **值对应没有输入值 CVALUE_NONE） 、输入值必须 CVALUE _REQUIRED）、输入值可选（VALUE_OPTIONAL）和数组输入值（VALUE IS ARRAY) 4 种。** 
 
-'clear all session'对应选项的的说明
+**'clear all session'对应选项的的说明**
 
-null：默认值，没有的话就默认为null
+**null：默认值，没有的话就默认为null**
 
-execute 方法定义了具体功能
+**execute 方法定义了具体功能**
 
-然后在application目录下面的command.php(没有的话需要创建) 添加下面的代码
+**然后在application目录下面的command.php(没有的话需要创建) 添加下面的代码**
 
 ```php
 return [
@@ -160,7 +160,7 @@ return [
 ];
 ```
 
-然后运行php think 看一下是否注册成功 出现如下说明成功了
+**然后运行php think 看一下是否注册成功 出现如下说明成功了**
 
 ```
 Available commands:
@@ -171,7 +171,7 @@ Available commands:
   session            Clear Seesion file
 ```
 
-然后我们可以测试一下 运行
+**然后我们可以测试一下 运行**
 
 ```
 php think session --clear
